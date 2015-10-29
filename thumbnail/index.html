@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Badge</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-sm-5 target">
+            
+        </div>
+    </div>
+    </div>
+    <script type="text/jsx">
+        // Define a class
+        var Badge = React.createClass({
+            render: function() {
+                return <button className="btn btn-primary" type="button">
+                   {this.props.title} <span className="badge">{this.props.number}</span>
+                </button>
+            }
+        });
+        
+        var Thumbnail = React.createClass({
+            render: function() {
+                return <div className="thumbnail">
+                  <img src={this.props.imageUrl}/>
+                  <div className="caption">
+                    <h3>{this.props.header}</h3>
+                    <p>{this.props.description}</p>
+                    <p>
+                      <Badge title={this.props.title} number={this.props.number} />
+                    </p>
+                  </div>
+                </div>
+            }
+        })
+
+        // Define options
+        var options = {
+            title: "See Tutorials",
+            number: 42,
+            header: 'Learn React',
+            description: 'React is a fantastic new library for making fast, dynamic pages. React is',
+            imageUrl: 'http://formatjs.io/img/react.svg',
+            
+        };
+        
+        // React, please render this class
+        var element = React.createElement(Thumbnail, options);
+
+        // React, after you render this class, please place it in my body tag
+        React.render(element, document.querySelector('.target'));
+    </script>
+</body>
+
+</html>
